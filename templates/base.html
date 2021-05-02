@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/login.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Employee Mental Health WellBeing Software</title>
+
+</head>
+<body>
+    <nav class="navbar">
+      <a class="navbar-brand"  href='{{url_for("home")}}'>
+
+      Get Report on Burnout
+      </a>
+    
+      <a href='{{url_for("teams_insight")}}'>
+        Team Meetings
+      </a>
+      <a href='{{url_for("review")}}'>
+        Manager FeedBack
+      </a>
+    </nav>
+    <br></br><br></br>
+    <center>
+      <a >Get reports on Employee's mental fatigue score and burnout</a>
+      <form id="login_form" action='#' method="post" 
+      enctype = "multipart/form-data">
+      <input type = "file" id = "file" name = "file" />
+      <br></br>
+      <input type = "submit" value='Save Report' /></br>
+      </form>   
+    </center>
+    </body>
+        
