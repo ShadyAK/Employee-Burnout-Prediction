@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for,session,flash,Response ,send_file,Response
 import pandas as pd
-from utils import preprocess_data,predict_,insert_attendance,attendance_hist
+from utils import preprocess_data,predict_,insert_attendance,attendance_hist,add_review,employee_chart
 from datetime import date,datetime,timedelta
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -66,6 +66,7 @@ def plot_attendance():
 def review():
     if request.method=='POST':
         csv = pd.read_csv(request.files['file'])
+        dates = [datetime.strptime(date, '%m/%d/%Y') for date in csv['Date']]
         id_,review = preprocess_data.preprocess_reviews(csv)
         feedbacks = return_feedback(review)
         today = datetime.now()
@@ -73,8 +74,18 @@ def review():
         df = pd.DataFrame({"Employee":id_[0],'Manager':id_[1],'Review':feedbacks})
         name = today+"Managers_review.csv"
         df.to_csv('Reports\\Manager Review\\'+name,index=False)
+        add_review.add_review(id_[0],dates,feedbacks)
         negatives = [id_[0][index] for index in range(len(feedbacks)) if feedbacks[index]=='Negative']
         return 'File Saved in the review folder with name {} \n these emloyees need some attention {}'.format(name,negatives)
     return render_template('review.html')
+@app.route('/user',methods=['POST','GET'])
+def user():
+    if request.method=='POST':
+        username = request.form['username']
+        fig = employee_chart.get_chart(username)
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+    return render_template('user_report.html')
 if __name__=="__main__":
     app.run(debug=True)    
