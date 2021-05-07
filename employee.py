@@ -88,4 +88,4 @@ def user():
         return Response(output.getvalue(), mimetype='image/png')
     return render_template('user_report.html')
 if __name__=="__main__":
-    app.run(debug=True)    
+    app.run()    
