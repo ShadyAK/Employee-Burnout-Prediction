@@ -34,7 +34,7 @@ def get_histogram(date_start,date_end = None): #returns bar plot for the total t
         fig = Figure()
         axis = fig.add_subplot(1, 1, 1)
         axis.bar(frequency.keys(),frequency.values())
-        axis.set_xlabel('Username', 
+        axis.set_xlabel('From date {}'.format(date_start), 
                fontweight ='bold')
         axis.set_ylabel('Minutes',fontweight ='bold')
         for tick in axis.get_xticklabels():
