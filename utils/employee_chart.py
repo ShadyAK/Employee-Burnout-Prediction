@@ -38,7 +38,7 @@ def get_employee_review(username):
     cur.execute(sql,(username,))
     result = cur.fetchall()
     if not result:
-        return [1],["No Review Yet"]
+        return ["No Review Yet"],[[],[]]
     date,review = [],[[],[]]
 
     for element in result:
@@ -59,10 +59,13 @@ def get_chart(username):
     axis = fig.add_subplot(2, 1, 1)
     axis.bar(['team_avg',username],[mean_time,user_time],color=['purple','green'])
     axis.set_ylabel('Minutes',fontweight ='bold')
+    axis.set_title('Teams Meeting Data')
+    print(review)
     axis = fig.add_subplot(2, 1, 2)
     axis.bar(date,review[0],color=review[1])
     axis.set_ylabel('Review',fontweight ='bold')
     axis.set_yticklabels([0,None,None,None,None,1])
+    axis.set_title('Manager Review')
     for tick in axis.get_xticklabels():
         tick.set_rotation(-15)
     fig.tight_layout()
