@@ -1,5 +1,0 @@
-1. ID specific review- 
-	1.Chart on THIS ID attendance time vs mean of others  
-	2.Chart on number of recent 2 review.
-	3.Burnout Fatigue Score recent 
- 
