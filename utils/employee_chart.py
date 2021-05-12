@@ -2,6 +2,7 @@ import sqlite3
 from .attendance_hist import change_time
 import datetime 
 from matplotlib.figure import Figure
+#Avg meet time = Total employee time/number of employee 
 def get_user_teamtime(username):
     # Mean population time (user to be checked upon not included)
     today = datetime.date.today()
@@ -30,6 +31,7 @@ def get_user_teamtime(username):
 
     return mean_time,user_time
 
+#Get manager review
 def get_employee_review(username):
     connection = sqlite3.connect('models_and_pipelines\database\database.db')
     cur = connection.cursor()
