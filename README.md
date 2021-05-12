@@ -1,4 +1,4 @@
-# Employee_wellbeing
+# Employee-Burnout-Prediction
 A project focused on the mental fatigue and burnout of the employee.
 
 ###  Installation Process. 
